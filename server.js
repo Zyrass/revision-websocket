@@ -7,8 +7,10 @@ const ws      = require("ws")
 const app = express()
 const port = process.env.PORT || 3001
 
+app.use(express.static(path.join(__dirname, "public")))
+
 app.get("*", (req, res) => {
-  res.status(200).sendFile(path.join(__dirname, "index.html"))
+  res.status(200).sendFile(path.join(__dirname, "views/index.html"))
 })
 
 const server = app.listen(port, () => console.log(`Server démarré sur http://localhost:${port}`))
