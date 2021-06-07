@@ -1,6 +1,6 @@
 {
   "name": "websocket",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "> Révision du cours sur Websocket appris sur Dyma.fr",
   "main": "server.js",
   "scripts": {
