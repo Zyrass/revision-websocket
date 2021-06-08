@@ -81,7 +81,7 @@ const websocketInit = () => {
   const btn       = document.querySelector("button")
   
   // API WEBSOCKET
-  const websocket = new WebSocket(`ws://localhost:3001`)
+  const websocket = new WebSocket(`ws://${window.location.host}`)
 
   // ETATS
   websocket.onopen  = () => console.log("Bonjour et bienvenue.");
