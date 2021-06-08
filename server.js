@@ -2,26 +2,24 @@
 const path    = require("path")
 const express = require("express")
 const ws      = require("ws")
+const morgan = require("morgan")
 
 // Application
 const app     = express()
 const port    = process.env.PORT || 3001
 
 // Middlewares
+app.use(morgan("dev"))
 app.use(express.static(path.join(__dirname, "public")))
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 // Routing
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./views/index.html"))
-})
-
 app.get("/tchat", (req, res) => {
   res.sendFile(path.join(__dirname, "./views/tchat.html"))
 })
 
 app.post("/tchat", (req, res) => {
-  console.log(req.body.msg)
   res.sendFile(path.join(__dirname, "./views/tchat.html"))
 })
 

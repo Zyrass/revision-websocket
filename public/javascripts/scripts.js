@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
-  
+
   // INITIALISATION
   websocketInit()
 
@@ -90,12 +90,16 @@ const websocketInit = () => {
   // CONTENU DU MESSAGE SORTANT - envoie - (Issue du client)
   btn.addEventListener('click', $e => {
     $e.preventDefault()
+
     // SI 0 caractère on envoie rien
     if (input.value.length > 0 ) {
+
       // ETAPE 1 - Ce message sera affiché sur mon écran
-      newMessage("https://static.vecteezy.com/ti/vecteur-libre/p1/1840612-image-profil-icon-male-icon-human-or-people-sign-and-symbol-vector-gratuit-vectoriel.jpg", "Alain Guillon", input.value)
+      newMessage("https://static.vecteezy.com/ti/vecteur-libre/p1/1840612-image-profil-icon-male-icon-human-or-people-sign-and-symbol-vector-gratuit-vectoriel.jpg", "John Doe", input.value)
+
       // ETAPE 2 - J'envoie le contenu de l'input au server !!
       websocket.send(input.value)
+
       // ETAPE 3 - Je vide le contenu du champ input !!
       input.value = ""      
     }
@@ -104,9 +108,13 @@ const websocketInit = () => {
   // CONTENU DU MESSAGE ENTRANT - récupération - (Issue du server)
   websocket.onmessage = messageDuServer => {
 
-    // ETAPE 4 - Affichage du message récupérer par le server
-    // console.log(messageDuServer.data)
-    newMessage("https://static.vecteezy.com/ti/vecteur-libre/p1/1840612-image-profil-icon-male-icon-human-or-people-sign-and-symbol-vector-gratuit-vectoriel.jpg", "Alain Guillon", messageDuServer.data)
+    if (messageDuServer.data.length > 0) {
+      
+      // ETAPE 4 - Affichage du message récupérer par le server
+      // console.log(messageDuServer.data)
+      newMessage("https://static.vecteezy.com/ti/vecteur-libre/p1/1840612-image-profil-icon-male-icon-human-or-people-sign-and-symbol-vector-gratuit-vectoriel.jpg", "John Doe", messageDuServer.data)
+
+    }
 
   }
 
